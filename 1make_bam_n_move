@@ -6,7 +6,7 @@
 for cramfile in $(find /Volumes/Data/311/a/ -type f -maxdepth 1 -name "*.cram" -exec basename {} \;)
 do
   cramfilename=${cramfile%.*}
-  bamfilename=$(awk -v var="$cramfilename"'$1==var{print $2}' ./bam_name_convert.txt)
+  bamfilename=$(awk -v var="$cramfilename" '$1==var{print $2}' ./bam_name_convert.txt)
   echo "$cramfilename"
   echo "$bamfilename"
   #rm -r  ~/RS/F30_all/data/${bamfilename}/; mkdir ~/RS/F30_all/data/${bamfilename}/
