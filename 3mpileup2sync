@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# advised command line to use PER CHROMOSOME (concatenate at the end using the cat command line,
+# the same way as already done with pileup files)
+
+java -jar ./popoolation2/mpileup2sync.jar --input ~/RS/flight_test/data/F30/Pool_311.F30r11sub1_2L.pileup \
+--output ~/RS/flight_test/data/F30/Pool_311.F30r11sub1_2L.sync --fastq-type sanger \
+--min-qual 20 --threads 8
+
+java -jar ./popoolation2/mpileup2sync.jar --input ~/RS/flight_test/data/F30/Pool_311.F30r11sub1_2R.pileup \
+--output ~/RS/flight_test/data/F30/Pool_311.F30r11sub1_2R.sync --fastq-type sanger \
+--min-qual 20 --threads 8
+
+java -jar ./popoolation2/mpileup2sync.jar --input ~/RS/flight_test/data/F30/Pool_311.F30r11sub1_3L.pileup \
+--output ~/RS/flight_test/data/F30/Pool_311.F30r11sub1_3L.sync --fastq-type sanger \
+--min-qual 20 --threads 8
+
+java -jar ./popoolation2/mpileup2sync.jar --input ~/RS/flight_test/data/F30/Pool_311.F30r11sub1_3R.pileup \
+--output ~/RS/flight_test/data/F30/Pool_311.F30r11sub1_3R.sync --fastq-type sanger \
+--min-qual 20 --threads 8
+
+java -jar ./popoolation2/mpileup2sync.jar --input ~/RS/flight_test/data/F30/Pool_311.F30r11sub1_4.pileup \
+--output ~/RS/flight_test/data/F30/Pool_311.F30r11sub1_4.sync --fastq-type sanger \
+--min-qual 20 --threads 8
+
+java -jar ./popoolation2/mpileup2sync.jar --input ~/RS/flight_test/data/F30/Pool_311.F30r11sub1_X.pileup \
+--output ~/RS/flight_test/data/F30/Pool_311.F30r11sub1_X.sync --fastq-type sanger \
+--min-qual 20 --threads 8

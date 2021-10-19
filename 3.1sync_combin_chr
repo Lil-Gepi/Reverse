@@ -1,0 +1,6 @@
+#!/bin/bash
+# Combinning the sync files of each chromosome to one sync file
+
+cd ../data/F30
+cat Pool_311.F30r11sub1_2L.sync Pool_311.F30r11sub1_2R.sync Pool_311.F30r11sub1_3L.sync Pool_311.F30r11sub1_3R.sync \
+Pool_311.F30r11sub1_4.sync Pool_311.F30r11sub1_X.sync > Pool_311.F30r11sub1_all_chr.sync
