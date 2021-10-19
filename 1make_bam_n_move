@@ -2,7 +2,7 @@
 
 for cramfile in $(ls /Volumes/Data/311/a/)
 do
-  cramfilename = ${FILE%%.*}
-
+  cramfilename=${FILE%%.*}
+  echo $cramfilename
 done
 #samtools view -b /Volumes/Data/311/a/LB_311.TI02.cram -T ~/RS/flight_test/data/reference/dsimM252v1.2+microbiome.fa -o ~/RS/flight_test/data/F30/LB_311.TI02.bam
