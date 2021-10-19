@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for cramfile in $(ls /Volumes/Data/311/a/LB*)
+for cramfile in $(find /Volumes/Data/311/a/ -type f -maxdepth 1 -name "*.cram" -exec basename {} \;)
 do
   cramfilename=${cramfile%.*}
   echo $cramfilename
