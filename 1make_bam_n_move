@@ -7,6 +7,6 @@ for cramfile in $(find /Volumes/Data/311/a/ -type f -maxdepth 1 -name "*.cram" -
 do
   cramfilename=${cramfile%.*}
   bamfilename=awk '$1==$cramfilename{print $2}' ./bam_name_convert.txt
-  samtools view -b /Volumes/Data/311/a/$cramfilename -T ~/RS/flight_test/data/reference/dsimM252v1.2+microbiome.fa -o ~/RS/F30_all/data/F30/$cramfilename.bam
+  samtools view -b /Volumes/Data/311/a/$cramfile -T ~/RS/flight_test/data/reference/dsimM252v1.2+microbiome.fa -o ~/RS/F30_all/data/F30/$cramfilename.bam
 done
 #samtools view -b /Volumes/Data/311/a/LB_311.TI02.cram -T ~/RS/flight_test/data/reference/dsimM252v1.2+microbiome.fa -o ~/RS/flight_test/data/F30/LB_311.TI02.bam
