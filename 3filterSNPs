@@ -3,10 +3,7 @@
 # this awk command line is from Sheng-kai
 
 cd ~/RS/F30_all/data/
-# index the reference genome fasta
-samtools faidx ~/RS/F30_all/reference/dsimM252v1.2+microbiome.fa
-# do the job from bam to cram to sync for each subreplicate
-# bamfile are like F30r11sub1 etc.
+
 for bamfile in $(ls ~/RS/F30_all/data/)
 do
   cd ~/RS/F30_all/data/${bamfile}/
