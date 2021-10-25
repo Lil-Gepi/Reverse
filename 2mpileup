@@ -1,6 +1,5 @@
 #!/bin/sh
 
-cd ~/RS/F30_all/data/
 # index the reference genome fasta
 samtools faidx ~/RS/F30_all/reference/dsimM252v1.2+microbiome.fa
 # do the job from bam to cram to sync for each subreplicate
@@ -11,7 +10,7 @@ do
   do
     cd ~/RS/F30_all/data/${bamfile}/
     # for samtools version 1.9. Index Bam file (create bai file) before split.
-    samtools index -b ~/RS/F30_all/data/${bamfile}/${bamfile}.bam
+    # samtools index -b ~/RS/F30_all/data/${bamfile}/${bamfile}.bam
     # split BAM into chromosomes of interest and index them,
     # and we do the job on each chromosome and later concate them
     # can also extract information for mitochondrial DNA which name is mtDNA_65039429 something
@@ -21,7 +20,6 @@ do
   done
   samtools mpileup -B -q 20 -Q 0 -f ~/RS/F30_all/reference/dsimM252v1.2+microbiome.fa \
   $(ls -R /Users/ychen/RS/F30_all/data/*/*_${chr}.bam) | \
-#  ~/RS/F30_all/data/${bamfile}/${bamfile}_${chr}.bam | \
   java -jar ~/RS/F30_all/pipeline/popoolation2/mpileup2sync.jar --input /dev/stdin \
   --output ~/RS/F30_all/result/F30_r11_r12_${chr}.sync --fastq-type sanger \
   --min-qual 20 --threads 8
