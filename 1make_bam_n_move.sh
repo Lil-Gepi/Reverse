@@ -3,7 +3,7 @@
 # It could be better if we intake a txt containing .cram file name and coordinate biological meaning, so that he bam file name make sense
 
 
-for cramfile in $(find /Volumes/Data/311/a/ -type f -maxdepth 1 -name "*.cram" -exec basename {} \;)
+for cramfile in $(find /Volumes/Data/311/a/ /Volumes/Data/312/a/ -type f -maxdepth 1 -name "*.cram" -exec basename {} \;)
 do
   cramfilename=${cramfile%.*}
   bamfilename=$(awk -v var="$cramfilename" '$1==var{print $2}' ./bam_name_convert.txt)

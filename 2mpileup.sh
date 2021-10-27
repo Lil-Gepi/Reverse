@@ -21,17 +21,17 @@ do
   samtools mpileup -B -q 20 -Q 0 -f ~/RS/F30_all/reference/dsimM252v1.2+microbiome.fa \
   $(ls -R /Users/ychen/RS/F30_all/data/*/*_${chr}.bam) | \
   java -jar ~/RS/F30_all/pipeline/popoolation2/mpileup2sync.jar --input /dev/stdin \
-  --output ~/RS/F30_all/result/F30_r11_r12_${chr}.sync --fastq-type sanger \
-  --min-qual 20 --threads 8
+  --output ~/RS/F30_all/result/F30_${chr}.sync --fastq-type sanger \
+  --min-qual 20 --threads 12
 
 done
 
 
 cat \
-~/RS/F30_all/result/F30_r11_r12_2L.sync ~/RS/F30_all/result/F30_r11_r12_2R.sync \
-~/RS/F30_all/result/F30_r11_r12_3L.sync ~/RS/F30_all/result/F30_r11_r12_3R.sync \
-~/RS/F30_all/result/F30_r11_r12_4.sync ~/RS/F30_all/result/F30_r11_r12_X.sync > \
-~/RS/F30_all/result/F30_r11_r12_all_chr_mq20_bq20.sync
+~/RS/F30_all/result/F30_2L.sync ~/RS/F30_all/result/F30_2R.sync \
+~/RS/F30_all/result/F30_3L.sync ~/RS/F30_all/result/F30_3R.sync \
+~/RS/F30_all/result/F30_4.sync ~/RS/F30_all/result/F30_X.sync > \
+~/RS/F30_all/result/F30_all_chr_mq20_bq20.sync
 
 
 
