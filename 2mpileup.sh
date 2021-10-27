@@ -10,7 +10,7 @@ do
   do
     cd ~/RS/F30_all/data/${bamfile}/
     # for samtools version 1.9. Index Bam file (create bai file) before split.
-    # samtools index -b ~/RS/F30_all/data/${bamfile}/${bamfile}.bam
+    samtools index -b ~/RS/F30_all/data/${bamfile}/${bamfile}.bam
     # split BAM into chromosomes of interest and index them,
     # and we do the job on each chromosome and later concate them
     # can also extract information for mitochondrial DNA which name is mtDNA_65039429 something
