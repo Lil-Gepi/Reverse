@@ -4,13 +4,16 @@
 samtools faidx ~/RS/F30_all/reference/dsimM252v1.2+microbiome.fa
 # do the job from bam to cram to sync for each subreplicate
 # bamfile are like F30r11sub1 etc.
+for bamfile in $(ls ~/RS/F30_all/data/)
+do
+  samtools index -b ~/RS/F30_all/data/${bamfile}/${bamfile}.bam
+done
+
 for chr in 2L 2R 3L 3R 4 X
 do
   for bamfile in $(ls ~/RS/F30_all/data/)
   do
     cd ~/RS/F30_all/data/${bamfile}/
-    # for samtools version 1.9. Index Bam file (create bai file) before split.
-    samtools index -b ~/RS/F30_all/data/${bamfile}/${bamfile}.bam
     # split BAM into chromosomes of interest and index them,
     # and we do the job on each chromosome and later concate them
     # can also extract information for mitochondrial DNA which name is mtDNA_65039429 something
