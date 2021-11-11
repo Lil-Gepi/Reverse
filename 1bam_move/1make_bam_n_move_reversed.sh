@@ -8,8 +8,8 @@ do
   do
     cramfilename=${cramfile%.*}
     bamfilename=$(awk -v var="$cramfilename" '$1==var{print $2}' ~/RS/pipeline/1bam_move/cram2bam_name.txt)
-    if [ ! -d ~/RS/F30_all/data/${bamfilename}/ ]; then
-      mkdir ~/RS/F30_all/data/${bamfilename}/
+    if [ ! -d ~/RS/data/${bamfilename}/ ]; then
+      mkdir ~/RS/data/${bamfilename}/
     fi
   # rm -r  ~/RS/data/${bamfilename}/
   # mkdir ~/RS/data/${bamfilename}/
