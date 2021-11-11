@@ -17,5 +17,5 @@ do
   #rm -r  ~/RS/data/${bamfilename}/; mkdir ~/RS/data/${bamfilename}/
   echo "samtools view -b -q 20 -F 0x400 -T ~/RS/reference/dsimM252v1.2+microbiome.fa \
   -o ~/RS/data/${bamfilename}/${bamfilename}.bam /Volumes/Data/${pool}/a/${cramfile}"
-  done | parallel -j 10
-done
+  done
+done | parallel -j 10
