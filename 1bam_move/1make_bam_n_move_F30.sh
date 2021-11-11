@@ -7,7 +7,7 @@ do
   for cramfile in $(find /Volumes/Data/${pool}/a/ -type f -maxdepth 1 -name "*.cram" -exec basename {} \;)
   do
     cramfilename=${cramfile%.*}
-    bamfilename=$(awk -v var="$cramfilename" '$1==var{print $2}' ~/RS/pipeline/1bam_move/bam_name_convert.txt)
+    bamfilename=$(awk -v var="$cramfilename" '$1==var{print $2}' ~/RS/pipeline/1bam_move/cram2bam_name.txt)
   #  echo "$cramfilename"
   #  echo "$bamfilename"
     # if [ ! -d ~/RS/F30_all/data/${bamfilename}/ ]; then
