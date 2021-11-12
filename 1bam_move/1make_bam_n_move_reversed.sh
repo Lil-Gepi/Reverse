@@ -11,8 +11,6 @@ do
     if [ ! -d ~/RS/data/${bamfilename}/ ]; then
       mkdir ~/RS/data/${bamfilename}/
     fi
-  # rm -r  ~/RS/data/${bamfilename}/
-  # mkdir ~/RS/data/${bamfilename}/
   done
 done
 

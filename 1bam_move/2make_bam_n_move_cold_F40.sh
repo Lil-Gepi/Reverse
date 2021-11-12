@@ -4,7 +4,9 @@ for cramfile in $(find /Volumes/Data/185/a/ -type f -maxdepth 1 -name "*.cram" -
 do
   cramfilename=${cramfile%.*}
   bamfilename=$(awk -v var="$cramfilename" '$1==var{print $2}' ~/RS/pipeline/1bam_move/cram2bam_name.txt)
-  rm -r  ~/RS/data/${bamfilename}/; mkdir ~/RS/data/${bamfilename}/
+  if [ ! -d ~/RS/data/${bamfilename}/ ]; then
+    mkdir ~/RS/data/${bamfilename}/
+  fi
 done
 
 for pool in a b c d e
