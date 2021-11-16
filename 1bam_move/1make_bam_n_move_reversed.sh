@@ -1,5 +1,5 @@
 #!/bin/bash
-
+samtools faidx ~/RS/F30_all/reference/dsimM252v1.2+microbiome.fa
 # It could be better if we intake a txt containing .cram file name and coordinate biological meaning, so that he bam file name make sense
 
 for pool in 267 311 312 488 564 565 566
