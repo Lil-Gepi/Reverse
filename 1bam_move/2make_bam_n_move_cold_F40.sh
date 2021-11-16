@@ -15,7 +15,7 @@ do
   do
     cramfilename=${cramfile%.*}
     bamfilename=$(awk -v var="$cramfilename" '$1==var{print $2}' ~/RS/pipeline/1bam_move/cram2bam_name.txt)
-    echo "samtools view -b -q 20 -F 0x400 -T ~/RS/reference/dsimM252v1.2+microbiome.fa -o ~/RS/data/${bamfilename}/${bamfilename}_${pool}.bam /Volumes/Data/185/${pool}/${cramfile}"
+    samtools view -b -q 20 -F 0x400 -T ~/RS/reference/dsimM252v1.2+microbiome.fa -o ~/RS/data/${bamfilename}/${bamfilename}_${pool}.bam /Volumes/Data/185/${pool}/${cramfile}
   done
 done
 
