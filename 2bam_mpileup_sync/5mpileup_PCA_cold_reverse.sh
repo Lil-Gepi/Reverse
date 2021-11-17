@@ -22,7 +22,6 @@ do
   java -jar ~/RS/pipeline/popoolation2/mpileup2sync.jar --input /dev/stdin \
   --output ~/RS/result/cold_F30_PCA/cold_F30_${chr}.sync --fastq-type sanger \
   --min-qual 20 --threads 16
-
 done
 
 
