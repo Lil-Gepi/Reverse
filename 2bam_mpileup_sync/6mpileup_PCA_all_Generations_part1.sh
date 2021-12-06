@@ -12,26 +12,14 @@ F60r11sub1 F60r11sub2 F60r12sub1 F60r12sub2 \
 F80r11sub1 F80r11sub2 F80r12sub1 F80r12sub2 F80r13sub1 F80r13sub2 F80r14sub1 F80r14sub2)
 for bamfile in ${bamfile_id_list}
 do
-  if test -f "~/RS/data/${bamfile}/${bamfile}.bai"
-  then
-    echo "${bamfile} already indexed."
-  else
-    echo "${bamfile} is now being indexed."
-    echo "samtools index -b ~/RS/data/${bamfile}/${bamfile}.bam"
-  fi
+  echo "samtools index -b ~/RS/data/${bamfile}/${bamfile}.bam"
 done | parallel -j 8
 
 for bamfile in ${bamfile_id_list}
 do
-  if test -f "~/RS/data/${bamfile}/${bamfile}_2L.bam"
-  then
-    echo "${bamfile} already seperated by chromosome."
-  else
-    for chr in 2L 2R 3L 3R 4 X
-    do
-      echo "seperating ${bamfile} for chromosome ${chr}."
-      echo "samtools view -b ~/RS/data/${bamfile}/${bamfile}.bam ${chr} > \
-      ~/RS/data/${bamfile}/${bamfile}_${chr}.bam; samtools index ~/RS/data/${bamfile}/${bamfile}_${chr}.bam"
-    done
-  fi
+  for chr in 2L 2R 3L 3R 4 X
+  do
+    echo "samtools view -b ~/RS/data/${bamfile}/${bamfile}.bam ${chr} > \
+    ~/RS/data/${bamfile}/${bamfile}_${chr}.bam; samtools index ~/RS/data/${bamfile}/${bamfile}_${chr}.bam"
+  done
 done | parallel -j 8
