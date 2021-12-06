@@ -2,10 +2,9 @@
 
 # do the job from bam to cram to sync for each subreplicate
 # bamfile are like F30r11sub1 etc.
-bamfile_id_list=(coldF40r11 coldF40r12 coldF40r13 coldF40r14 \
+bamfile_id_list=(coldF40r11 \
 F10r11sub1 F10r11sub2 F10r12sub1 F10r12sub2 F10r13sub1 F10r13sub2 F10r14sub1 F10r14sub2 \
 F20r11sub1 F20r11sub2 F20r12sub1 F20r12sub2 F20r13sub1 F20r13sub2 F20r14sub1 F20r14sub2 \
-F30r11sub1 F30r11sub2 F30r11sub3 F30r11sub4 F30r11sub5 F30r12sub1 F30r12sub2 F30r12sub3 F30r12sub4 F30r12sub5 F30r13sub1 F30r13sub2 F30r13sub3 F30r13sub4 F30r13sub5 F30r14sub1 F30r14sub2 F30r14sub3 F30r14sub4 F30r14sub5 \
 F40r11sub1 F40r11sub2 F40r12sub1 F40r12sub2 F40r13sub1 F40r13sub2 F40r14sub1 F40r14sub2 \
 F50r11sub1 F50r11sub2 F50r12sub1 F50r12sub2 F50r13sub1 F50r13sub2 F50r14sub1 F50r14sub2 \
 F60r11sub1 F60r11sub2 F60r12sub1 F60r12sub2 \
