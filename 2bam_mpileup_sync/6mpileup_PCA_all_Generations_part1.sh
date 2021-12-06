@@ -30,9 +30,8 @@ do
     for chr in 2L 2R 3L 3R 4 X
     do
       echo "seperating ${bamfile} for chromosome ${chr}."
-      samtools view -b ~/RS/data/${bamfile}/${bamfile}.bam ${chr} > \
-      ~/RS/data/${bamfile}/${bamfile}_${chr}.bam
-      samtools index ~/RS/data/${bamfile}/${bamfile}_${chr}.bam
+      echo "samtools view -b ~/RS/data/${bamfile}/${bamfile}.bam ${chr} > \
+      ~/RS/data/${bamfile}/${bamfile}_${chr}.bam; samtools index ~/RS/data/${bamfile}/${bamfile}_${chr}.bam"
     done
   fi
-done
+done | parallel -j 8
