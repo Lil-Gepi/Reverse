@@ -1,6 +1,6 @@
 setwd("~/Dropbox (PopGen)/Yiwen/RS/data/")
 require(ggplot2)
-
+require(dplyr)
 #manhattan plot----
 sig_SNP_cmh <- readRDS(file = "./sig_SNP_cmh_r11")
 thres_genome <- 0.05
