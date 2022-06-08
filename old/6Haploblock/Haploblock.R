@@ -1,8 +1,0 @@
-library(devtools)
-#install_github("popgenvienna/haploReconstruct")
-library(haploReconstruct)
-library(psych)
-library(stringr)
-library(data.table)
-#install_github("kathrinannaotte/haplovalidate")
-library(haplovalidate)
