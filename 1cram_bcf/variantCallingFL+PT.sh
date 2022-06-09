@@ -1,8 +1,8 @@
 #!/bin/zsh
 
-ref=/Volumes/Data/Dagny/Dropbox\ \(PopGen\)/DagnyPhD/Projects/PopulationSpecificAdaptation/reference/ 
+ref=/Volumes/Data/Dagny/Dropbox\ \(PopGen\)/DagnyPhD/Projects/PopulationSpecificAdaptation/reference/
 refLength=$(head -4 ${ref}dsimM252v1.2+microbiome.fa.fai | awk 'BEGIN{FS="\t"; sum=0} {sum+=$2} END{print sum}')
-input=/Volumes/Data/Dagny/Dropbox\ \(PopGen\)/DagnyPhD/Projects/PopulationSpecificAdaptation/data/
+input="/Volumes/Data/"
 echo $refLength
 bcfOutput=/Volumes/Temp2/preBcfHybridData/FLPT/
 output=/Volumes/Temp/mergedHybridData/
@@ -18,7 +18,7 @@ do
 
 		#get the read length of the file. Because the reads are not trimmed the first read can simply we checcked and saved into a variable
                	#tempReadLength=$(samtools view -T ${ref}dsimM252v1.2+microbiome.fa -F 0x400 ${file} | head -1 | awk '{ print length($10)}')
-                #tempReadLength=$(samtools view -T ${ref}dsimM252v1.2+microbiome.fa -F 0x400 ${file} | awk '{print $10}' | head -100000 | python3 mostFreqReadLength.py)	
+                #tempReadLength=$(samtools view -T ${ref}dsimM252v1.2+microbiome.fa -F 0x400 ${file} | awk '{print $10}' | head -100000 | python3 mostFreqReadLength.py)
 		tempReadLength=$(samtools view -T ${ref}dsimM252v1.2+microbiome.fa -F 0x400 ${file} | awk 'match($6,"H"){next}{print}' | head -1 | awk '{print length($10)}')
 
 		#Get an estimate of the coverage by: coverage = (read count * read length ) / total genome size. First, index the merged bamfile
@@ -27,12 +27,12 @@ do
                 coverage=$((readCount * tempReadLength))
                 coverage=$((coverage / refLength))
                 coveragex5=$((coverage * 5)) #max. depth to consider, set to 5x expected autosomal coverage
-		
-		echo "Pileing up " ${file} " using read length: " $tempReadLength " and coverage: " $coveragex5 
+
+		echo "Pileing up " ${file} " using read length: " $tempReadLength " and coverage: " $coveragex5
 
 		#convert to qname-sorted SAM that only contains primary pairs (needed by remapq)
 		samtools view -u -T ${ref}dsimM252v1.2+microbiome.fa ${file} 2L 2R 3L 3R X 4 | samtools collate -Ouf - | samtools fixmate -ru - - | samtools view -F 0x400 -f 0x2 -h - |\
-		
+
 		#flag short fragments  (replace $rl with the actual read length)
 		./flag-short.awk -v READ_LENGTH=$tempReadLength |\
 
@@ -44,10 +44,10 @@ do
 
 		#make single-sample pileup
 		bcftools mpileup -f ${ref}dsimM252v1.2+microbiome.fa -d $coveragex5 --skip-all-unset 0x2 -q 10 -Q 20 -D -a DP,AD,QS,SCR -Ou --threads 3 - |\
-		
+
 		#remove INFO tags we do not need to reduce file size
 		bcftools annotate -Ov -x INFO/IMF,INFO/VDB,INFO/RPBZ,INFO/MQBZ,INFO/MQSBZ,INFO/SCBZ,INFO/BQBZ,INFO/FS,INFO/SGB,INFO/I16,INFO/QS,INFO/MQ0F,FORMAT/PL |\
-		
+
 		#annotate raw single-sample pileup with more FORMAT tags (specifically, save INFO/DP to FORMAT/DP)
 		./info2fmt.awk -v tags=DP | bcftools view --no-version -Ob > ${bcfFile}
 
@@ -110,8 +110,3 @@ done
 # Example: extract coverages & allele frequencies as needed for CMH test, e.g., using ACER
 #bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%SAD]\n' ${vcf} | bgzip > ${bcfOutput}FLPT.flt.cov.txt.gz
 #bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%XF]\n' ${vcf} | bgzip > ${bcfOutput}FLPT.flt.alf.txt.gz
-
-
-
-
-
