@@ -6,7 +6,7 @@ sample=$1
 id_cram=$(awk -v var="$sample" '$2==var{print $1}' "${working_dir}/pipeline/1cram_bcf/cram2bam_name.txt")
 pool=$(echo ${id_cram:3:3})
 input_cram="/Volumes/Data/${pool}/a/${id_cram}.cram"
-
+samtools index ${input_cram}
 out_bcf_dir="${working_dir}/inter_data/${sample}/"
 out_bcf="${out_bcf_dir}/${sample}.bcf"
 ref_fa="${working_dir}/reference/dsimM252v1.2+microbiome.fa"
@@ -31,11 +31,11 @@ max_cov=$((cov * 5))
 chroms="X 2L 2R 3L 3R 4"
 samtools view -T ${ref_fa} -h -F 0x400 ${input_cram} $chroms |\
 samtools collate -Ouf - |\
- samtools fixmate -ru - - |\
-  samtools view -f 0x2 -h - |\
+samtools fixmate -ru - - |\
+samtools view -f 0x2 -h - |\
 ./rupert_pipe_v3/flag-short.awk -v READ_LENGTH=$rl |\
 ./rupert_pipe_v3/remapq.awk -v NORD=7.5 |\
-samtools sort -@3 -m 4G -u -T /tmp/sortsam.$(basename ${out_bcf%.bcf}).$tag - |\
+samtools sort -@3 -m 4G -T /tmp/sortsam.${sample} -u - |\
 bcftools mpileup -f ${ref_fa} -d $max_cov --skip-all-unset 0x2 -q 10 -Q 20 -D -a DP,AD,QS,SCR -Ou --threads 3 - |\
 bcftools annotate -Ov -x INFO/IMF,INFO/VDB,INFO/RPBZ,INFO/MQBZ,INFO/MQSBZ,INFO/SCBZ,INFO/BQBZ,INFO/FS,INFO/SGB,INFO/I16,INFO/QS,INFO/MQ0F,FORMAT/PL |\
 ./rupert_pipe_v3/info2fmt.awk -v tags=DP |\
