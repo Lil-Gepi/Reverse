@@ -41,4 +41,5 @@ bcftools annotate -Ov -x INFO/IMF,INFO/VDB,INFO/RPBZ,INFO/MQBZ,INFO/MQSBZ,INFO/S
 ./rupert_pipe_v3/info2fmt.awk -v tags=DP |\
 bcftools view --no-version -Ob -o "$out_bcf"
 echo "done with ${sample}"
+cd "${working_dir}/pipeline/1cram_bcf"
 exit
