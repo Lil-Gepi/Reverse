@@ -4,4 +4,4 @@ for (( i = 11; i < 15; i++ )); do
       sample=F10r${i}sub${j}
       echo $sample
   done
-done | parallel -j 5 "nohup bash ./1cram2bcf.operator.sh {}"
+done | parallel -j 5 "time bash ./1cram2bcf.operator.sh {}"
